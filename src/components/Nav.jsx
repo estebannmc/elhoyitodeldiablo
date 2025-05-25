@@ -7,21 +7,8 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg mb-4" style={{ background: "#00AEEF", borderBottom: "4px solid #FFD90F" }}>
       <div className="container">
-        {/* Logo Bob Patiño + Nombre */}
-        <Link className="navbar-brand d-flex align-items-center" to="/">
-          <img
-            src="https://i.ytimg.com/vi/yl2FpXrVb9w/mqdefault.jpg"
-            alt="Logo Bob Patiño"
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              marginRight: 10,
-              objectFit: "cover",
-              border: "2.5px solid #ED2939",
-              background: "#FFD90F"
-            }}
-          />
+        {/* Nombre del sitio */}
+        <Link className="navbar-brand fw-bold" to="/">
           El Hoyito del Diablo
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

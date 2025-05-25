@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>&copy; {new Date().getFullYear()} - Mi eCommerce React</p>
+      <p>&copy; {new Date().getFullYear()} - El hoyito del diablo</p>
     </footer>
   );
 }

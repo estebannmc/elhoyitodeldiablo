@@ -1,6 +1,6 @@
-/* Simpsons Style UI for "El Hoyito del Diablo" */
+/* Simpsons Style "El Hoyito del Diablo" */
 
-/* Import Simpsons-like font (Luckiest Guy from Google Fonts) */
+/* Trae desde googlefonts la tipo de Simpsons */
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 :root {
@@ -81,7 +81,7 @@ header p {
   font-size: 1.1rem;
 }
 
-/* BUTTONS */
+/* BOTONES */
 button, .btn, .btn-primary {
   background: var(--simpsons-red);
   color: #fff;

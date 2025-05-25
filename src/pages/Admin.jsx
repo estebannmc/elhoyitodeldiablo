@@ -11,12 +11,12 @@ function Admin() {
     setProducts(stored);
   }, []);
 
-  // Guardar productos en localStorage cada vez que cambian
+  // Guarda productos en localStorage cada vez que cambian
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
   }, [products]);
 
-  // Manejar cambios en el formulario
+  // Maneja cambios en el formulario
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };

@@ -14,7 +14,7 @@ function ProductList() {
         return res.json();
       })
       .then((data) => {
-        console.log("Productos recibidos:", data); // <-- LOG
+        console.log("Productos recibidos:", data); // <-- LOGEO
         setProducts(data);
         setLoading(false);
       })
@@ -26,7 +26,7 @@ function ProductList() {
 
   if (loading) return <div className="alert alert-info">Cargando productos...</div>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
-  if (products.length === 0) return <div>No hay productos para mostrar.</div>; // <-- MENSAJE
+  if (products.length === 0) return <div>No hay productos para mostrar.</div>; // <-- MENSAJITO
 
   return (
     <div className="container">

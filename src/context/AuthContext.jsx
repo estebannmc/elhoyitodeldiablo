@@ -18,14 +18,14 @@ export function AuthProvider({ children }) {
   const login = (userData) => {
     setUser(userData);
     localStorage.setItem("currentUser", JSON.stringify(userData));
-    // navigate("/"); // si quieres redirigir después de login
+    // navigate("/"); // por si queres redirigir después de login
   };
 
-  // --- AQUÍ ESTÁ EL LOGOUT ---
+  // --- ACA ESTÁ EL LOGOUT ---
   const logout = () => {
-    setUser(null); // borra usuario del context
+    setUser(null); // borrar usuario del context
     localStorage.removeItem("currentUser"); // borra del localStorage
-    navigate("/"); // redirige a inicio (opcional)
+    navigate("/"); // redirige a inicio
   };
 
   return (

@@ -25,7 +25,7 @@ function Checkout() {
       return;
     }
 
-    // Guardar la orden en el historial (localStorage)
+    // Guarda la orden en el historial (localStorage)
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || { username: "invitado" };
 
