@@ -1,0 +1,255 @@
+/* Simpsons Style "El Hoyito del Diablo" */
+
+/* Trae desde googlefonts la tipo de Simpsons */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+:root {
+  --simpsons-yellow: #ffd90f;
+  --simpsons-blue: #00aeef;
+  --simpsons-red: #ed2939;
+  --simpsons-green: #7ac142;
+  --simpsons-brown: #a97c50;
+  --simpsons-white: #fffbe6;
+  --simpsons-black: #000000;
+  --simpsons-shadow: 0 4px 12px 0 rgba(0,0,0,0.08);
+}
+
+/* GENERAL */
+body {
+  background: var(--simpsons-yellow);
+  color: var(--simpsons-black);
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header, .navbar, .footer {
+  background: var(--simpsons-blue);
+  color: #fff;
+  border-bottom: 6px solid var(--simpsons-yellow);
+  text-shadow: 1px 2px 0 var(--simpsons-black), 0px 0px 4px var(--simpsons-yellow);
+}
+
+/* HEADER LOGO */
+header img,
+.navbar-brand img {
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--simpsons-red);
+  box-shadow: var(--simpsons-shadow);
+  margin-bottom: 8px;
+  background: var(--simpsons-yellow);
+}
+
+header h1, .navbar-brand, .simpsons-title {
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  color: var(--simpsons-red);
+  letter-spacing: 2px;
+  font-size: 2.4rem;
+  margin-bottom: 0;
+  text-shadow: 2px 2px 0 var(--simpsons-yellow), 3px 3px 0 var(--simpsons-black);
+}
+
+header p {
+  color: var(--simpsons-blue);
+  font-size: 1.1rem;
+  margin-top: 5px;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  border-bottom: 4px solid var(--simpsons-yellow);
+  box-shadow: var(--simpsons-shadow);
+}
+
+.nav-link, .navbar-brand {
+  color: #fff !important;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.2rem;
+  text-shadow: 1px 2px 0 var(--simpsons-black), 0px 0px 4px var(--simpsons-yellow);
+}
+
+.nav-link:hover, .navbar-brand:hover {
+  color: var(--simpsons-red) !important;
+  text-decoration: underline wavy var(--simpsons-yellow);
+}
+
+.navbar-text {
+  color: var(--simpsons-yellow) !important;
+  font-size: 1.1rem;
+}
+
+/* BOTONES */
+button, .btn, .btn-primary {
+  background: var(--simpsons-red);
+  color: #fff;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  border: 3px solid var(--simpsons-black);
+  border-radius: 16px;
+  padding: 7px 21px;
+  font-size: 1.1rem;
+  box-shadow: var(--simpsons-shadow);
+  transition: background 0.2s, color 0.2s;
+}
+
+button:hover, .btn:hover, .btn-primary:hover {
+  background: var(--simpsons-yellow);
+  color: var(--simpsons-red);
+  border-color: var(--simpsons-red);
+}
+
+.btn-outline-light, .btn-outline-light:focus {
+  background: transparent;
+  color: var(--simpsons-yellow);
+  border: 2px solid var(--simpsons-yellow);
+}
+
+.btn-outline-light:hover {
+  background: var(--simpsons-yellow);
+  color: var(--simpsons-red);
+  border-color: var(--simpsons-red);
+}
+
+/* CARDS / PRODUCTOS */
+.card {
+  border: 3px solid var(--simpsons-blue);
+  background: var(--simpsons-white);
+  border-radius: 18px;
+  box-shadow: var(--simpsons-shadow);
+  margin-bottom: 18px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03) rotate(-1.2deg);
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.12);
+}
+
+.card-title, .product-title, h2, h3, h4, h5, h6 {
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  color: var(--simpsons-red);
+  text-shadow: 1px 2px 0 var(--simpsons-yellow), 0px 0px 6px var(--simpsons-black);
+}
+
+.card-img-top, .product-image {
+  border-bottom: 3px solid var(--simpsons-blue);
+  background: var(--simpsons-yellow);
+}
+
+/* FORMS */
+input, select, textarea {
+  border: 2px solid var(--simpsons-blue);
+  border-radius: 9px;
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fffce4;
+  margin-bottom: 8px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--simpsons-red);
+  background: #fffbe6;
+}
+
+/* SPECIAL BADGES (for Simpsons fun) */
+.simpsons-badge {
+  display: inline-block;
+  background: var(--simpsons-green);
+  color: var(--simpsons-black);
+  border: 2px solid var(--simpsons-black);
+  border-radius: 12px;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  padding: 4px 12px;
+  font-size: 0.95rem;
+  margin-left: 6px;
+  box-shadow: var(--simpsons-shadow);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--simpsons-blue);
+  color: var(--simpsons-yellow);
+  border-top: 6px solid var(--simpsons-red);
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  padding: 1.2rem 0;
+  margin-top: 40px;
+  text-shadow: 1px 2px 0 var(--simpsons-black);
+}
+
+/* LINKS */
+a {
+  color: var(--simpsons-red);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--simpsons-blue);
+  text-decoration: underline wavy var(--simpsons-yellow);
+}
+
+/* ALERTS, MESSAGES */
+.alert, .simpsons-alert {
+  background: var(--simpsons-yellow);
+  color: var(--simpsons-red);
+  border: 2px solid var(--simpsons-red);
+  border-radius: 10px;
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  padding: 8px 20px;
+  box-shadow: var(--simpsons-shadow);
+}
+
+/* ADMIN PANEL */
+.admin-panel {
+  background: var(--simpsons-white);
+  border: 3px dashed var(--simpsons-blue);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.admin-panel h2 {
+  color: var(--simpsons-blue);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--simpsons-yellow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--simpsons-blue);
+  border-radius: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  header h1, .navbar-brand, .simpsons-title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  .footer {
+    font-size: 1rem;
+  }
+}
+
+/* Fun Simpsons details! */
+.simpsons-quote {
+  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  color: var(--simpsons-red);
+  background: var(--simpsons-yellow);
+  border: 2px solid var(--simpsons-blue);
+  border-radius: 10px;
+  padding: 6px 15px;
+  margin: 12px 0;
+  display: inline-block;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 0 var(--simpsons-blue);
+}
