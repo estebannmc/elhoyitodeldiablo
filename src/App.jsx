@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Cart from "./components/Cart";
@@ -27,9 +27,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Products />} />
-          <Route path="/productos/:id" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/producto/:itemId" element={<ItemDetailContainer />} />
           {/* Rutas protegidas */}
           <Route path="/cart" element={
             <PrivateRoute>

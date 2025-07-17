@@ -1,63 +1,56 @@
-import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const validateForm = () => {
-    if (!form.email || !form.password) {
-      setError("Por favor, completa todos los campos.");
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(form.email)) {
-      setError("El email no es válido.");
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = (e) => {
-    e.preventDefault();ß
-    if (!validateForm()) return;
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.email === form.email && u.password === form.password
-    );
-    if (user) {
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      navigate("/");
+    e.preventDefault();
+    if (login(form.username, form.password)) {
+      navigate("/admin");
     } else {
-      setError("Email o contraseña incorrectos.");
+      setError("Usuario o contraseña incorrectos");
     }
   };
 
   return (
     <div className="container py-4" style={{ maxWidth: 400 }}>
-      <h2 className="mb-3">Iniciar sesión</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit}>
+      <Helmet>
+        <title>Iniciar sesión | El Hoyito del Diablo</title>
+        <meta name="description" content="Accede al panel de administración de El Hoyito del Diablo." />
+      </Helmet>
+      <h2 className="mb-3" id="login-title">Iniciar sesión</h2>
+      {error && (
+        <div className="alert alert-danger" role="alert" aria-live="assertive">
+          {error}
+        </div>
+      )}
+      <form onSubmit={handleSubmit} aria-labelledby="login-title">
+        <label htmlFor="username" className="form-label">Usuario</label>
         <input
-          name="email"
-          type="email"
+          id="username"
+          name="username"
           className="form-control mb-2"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
+          placeholder="Usuario"
+          value={form.username}
+          onChange={(e) => setForm({ ...form, username: e.target.value })}
+          aria-required="true"
         />
+        <label htmlFor="password" className="form-label">Contraseña</label>
         <input
+          id="password"
           name="password"
           type="password"
           className="form-control mb-3"
           placeholder="Contraseña"
           value={form.password}
-          onChange={handleChange}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          aria-required="true"
         />
         <button className="btn btn-primary w-100" type="submit">
           Iniciar sesión

@@ -1,7 +1,9 @@
 /* Simpsons Style "El Hoyito del Diablo" */
 
 /* Trae desde googlefonts la tipo de Simpsons */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 :root {
   --simpsons-yellow: #ffd90f;
@@ -21,6 +23,18 @@ body {
   font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
   margin: 0;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png');
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* HEADER */
@@ -43,7 +57,7 @@ header img,
 }
 
 header h1, .navbar-brand, .simpsons-title {
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Bangers', 'Luckiest Guy', cursive, sans-serif;
   color: var(--simpsons-red);
   letter-spacing: 2px;
   font-size: 2.4rem;
@@ -100,6 +114,12 @@ button:hover, .btn:hover, .btn-primary:hover {
   border-color: var(--simpsons-red);
 }
 
+.btn:hover, button:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px 0 rgba(237,41,57,0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 .btn-outline-light, .btn-outline-light:focus {
   background: transparent;
   color: var(--simpsons-yellow);
@@ -116,8 +136,8 @@ button:hover, .btn:hover, .btn-primary:hover {
 .card {
   border: 3px solid var(--simpsons-blue);
   background: var(--simpsons-white);
-  border-radius: 18px;
-  box-shadow: var(--simpsons-shadow);
+  border-radius: 24px;
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.18);
   margin-bottom: 18px;
   overflow: hidden;
   transition: transform 0.2s;
@@ -132,10 +152,13 @@ button:hover, .btn:hover, .btn-primary:hover {
   font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
   color: var(--simpsons-red);
   text-shadow: 1px 2px 0 var(--simpsons-yellow), 0px 0px 6px var(--simpsons-black);
+  font-size: 2.2rem;
+  text-shadow: 3px 3px 0 var(--simpsons-yellow), 2px 2px 0 var(--simpsons-black);
+  letter-spacing: 2px;
 }
 
 .card-img-top, .product-image {
-  border-bottom: 3px solid var(--simpsons-blue);
+  border: 4px dashed var(--simpsons-red);
   background: var(--simpsons-yellow);
 }
 
@@ -210,7 +233,7 @@ a:hover {
 .admin-panel {
   background: var(--simpsons-white);
   border: 3px dashed var(--simpsons-blue);
-  border-radius: 12px;
+  border-radius: 24px;
   padding: 18px;
   margin-bottom: 24px;
 }

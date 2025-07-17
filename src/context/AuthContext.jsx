@@ -1,40 +1,28 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    // Si hay usuario guardado, cargarlo
-    const stored = localStorage.getItem("currentUser");
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch (e) {
-        console.error("Failed to parse user data from localStorage:", e);
-        localStorage.removeItem("currentUser"); // Clear bad data
-        return null;
-      }
-    }
-    return null;
+    // Recupera usuario de localStorage si existe
+    const saved = localStorage.getItem("user");
+    return saved ? JSON.parse(saved) : null;
   });
-  const navigate = useNavigate();
 
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("currentUser", JSON.stringify(userData));
-    // navigate("/"); // por si queres redirigir después de login
+  const login = (username, password) => {
+    // Simulación: solo el usuario "admin" tiene acceso
+    if (username === "admin" && password === "admin123") {
+      const userData = { username, role: "admin" };
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+      return true;
+    }
+    return false;
   };
 
-  // --- ACA ESTÁ EL LOGOUT ---
   const logout = () => {
-    setUser(null); // borrar usuario del context
-    localStorage.removeItem("currentUser"); // borra del localStorage
-    navigate("/"); // redirige a inicio
+    setUser(null);
+    localStorage.removeItem("user");
   };
 
   return (
@@ -42,4 +30,8 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }
