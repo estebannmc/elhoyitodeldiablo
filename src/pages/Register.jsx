@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState } => from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function Register() {
   const navigate = useNavigate();
@@ -42,6 +43,10 @@ function Register() {
 
   return (
     <div className="container py-4" style={{ maxWidth: 400 }}>
+      <Helmet>
+        <title>Tienda Online - Registro</title>
+        <meta name="description" content="Regístrate para crear una nueva cuenta en nuestra tienda online." />
+      </Helmet>
       <h2 className="mb-3">Registro</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>

@@ -1,278 +1,235 @@
-/* Simpsons Style "El Hoyito del Diablo" */
+/* Minimalist & Modern Style */
 
-/* Trae desde googlefonts la tipo de Simpsons */
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 :root {
-  --simpsons-yellow: #ffd90f;
-  --simpsons-blue: #00aeef;
-  --simpsons-red: #ed2939;
-  --simpsons-green: #7ac142;
-  --simpsons-brown: #a97c50;
-  --simpsons-white: #fffbe6;
-  --simpsons-black: #000000;
-  --simpsons-shadow: 0 4px 12px 0 rgba(0,0,0,0.08);
+  --color-primary: #ffffff; /* White */
+  --color-secondary: #f8f9fa; /* Light Gray */
+  --color-accent: #007bff; /* Blue */
+  --color-text-dark: #212529; /* Dark Gray */
+  --color-text-light: #ffffff; /* White */
+  --color-background: #ffffff; /* White */
+  --color-border: #dee2e6; /* Light Gray */
+  --color-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  --color-hover-light: #e9ecef;
+  --color-hover-dark: #0056b3;
 }
 
 /* GENERAL */
 body {
-  background: var(--simpsons-yellow);
-  color: var(--simpsons-black);
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-dark);
+  font-family: 'Inter', sans-serif;
   margin: 0;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: url('https://www.transparenttextures.com/patterns/cubes.png');
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* HEADER */
 header, .navbar, .footer {
-  background: var(--simpsons-blue);
-  color: #fff;
-  border-bottom: 6px solid var(--simpsons-yellow);
-  text-shadow: 1px 2px 0 var(--simpsons-black), 0px 0px 4px var(--simpsons-yellow);
+  background: var(--color-primary);
+  color: var(--color-text-dark);
+  border-bottom: 1px solid var(--color-border);
+  text-shadow: none;
 }
 
 /* HEADER LOGO */
 header img,
 .navbar-brand img {
-  width: 90px;
+  width: 50px;
   border-radius: 50%;
-  border: 3px solid var(--simpsons-red);
-  box-shadow: var(--simpsons-shadow);
-  margin-bottom: 8px;
-  background: var(--simpsons-yellow);
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+  margin-bottom: 0;
+  background: transparent;
 }
 
-header h1, .navbar-brand, .simpsons-title {
-  font-family: 'Bangers', 'Luckiest Guy', cursive, sans-serif;
-  color: var(--simpsons-red);
-  letter-spacing: 2px;
-  font-size: 2.4rem;
-  margin-bottom: 0;
-  text-shadow: 2px 2px 0 var(--simpsons-yellow), 3px 3px 0 var(--simpsons-black);
-}
+
 
 header p {
-  color: var(--simpsons-blue);
-  font-size: 1.1rem;
+  color: var(--color-text-dark);
+  font-size: 1rem;
   margin-top: 5px;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* NAVBAR */
 .navbar {
-  border-bottom: 4px solid var(--simpsons-yellow);
-  box-shadow: var(--simpsons-shadow);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: none;
 }
 
 .nav-link, .navbar-brand {
-  color: #fff !important;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  font-size: 1.2rem;
-  text-shadow: 1px 2px 0 var(--simpsons-black), 0px 0px 4px var(--simpsons-yellow);
+  color: var(--color-text-dark) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  text-shadow: none;
 }
 
 .nav-link:hover, .navbar-brand:hover {
-  color: var(--simpsons-red) !important;
-  text-decoration: underline wavy var(--simpsons-yellow);
+  color: var(--color-accent) !important;
+  text-decoration: none;
 }
 
 .navbar-text {
-  color: var(--simpsons-yellow) !important;
-  font-size: 1.1rem;
+  color: var(--color-text-dark) !important;
+  font-size: 1rem;
 }
 
 /* BOTONES */
 button, .btn, .btn-primary {
-  background: var(--simpsons-red);
-  color: #fff;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  border: 3px solid var(--simpsons-black);
-  border-radius: 16px;
-  padding: 7px 21px;
-  font-size: 1.1rem;
-  box-shadow: var(--simpsons-shadow);
-  transition: background 0.2s, color 0.2s;
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover, .btn:hover, .btn-primary:hover {
-  background: var(--simpsons-yellow);
-  color: var(--simpsons-red);
-  border-color: var(--simpsons-red);
-}
-
-.btn:hover, button:hover {
-  transform: scale(1.08) rotate(-2deg);
-  box-shadow: 0 12px 32px 0 rgba(237,41,57,0.18);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--color-hover-dark);
+  color: var(--color-text-light);
+  border-color: var(--color-hover-dark);
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-outline-light, .btn-outline-light:focus {
   background: transparent;
-  color: var(--simpsons-yellow);
-  border: 2px solid var(--simpsons-yellow);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-border);
 }
 
 .btn-outline-light:hover {
-  background: var(--simpsons-yellow);
-  color: var(--simpsons-red);
-  border-color: var(--simpsons-red);
+  background: var(--color-secondary);
+  color: var(--color-text-dark);
+  border-color: var(--color-border);
 }
 
 /* CARDS / PRODUCTOS */
 .card {
-  border: 3px solid var(--simpsons-blue);
-  background: var(--simpsons-white);
-  border-radius: 24px;
-  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.18);
-  margin-bottom: 18px;
+  border: 1px solid var(--color-border);
+  background: var(--color-primary);
+  border-radius: 8px;
+  box-shadow: var(--color-shadow);
+  margin-bottom: 12px;
   overflow: hidden;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  transform: scale(1.03) rotate(-1.2deg);
-  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
-.card-title, .product-title, h2, h3, h4, h5, h6 {
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  color: var(--simpsons-red);
-  text-shadow: 1px 2px 0 var(--simpsons-yellow), 0px 0px 6px var(--simpsons-black);
-  font-size: 2.2rem;
-  text-shadow: 3px 3px 0 var(--simpsons-yellow), 2px 2px 0 var(--simpsons-black);
-  letter-spacing: 2px;
+.card-body {
+  padding: 16px;
+}
+
+.card-text {
+  font-size: 0.9rem;
+}
+
+.card-title, .product-title, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text-dark);
+  font-size: 1.25rem;
+  text-shadow: none;
+  letter-spacing: -0.5px;
 }
 
 .card-img-top, .product-image {
-  border: 4px dashed var(--simpsons-red);
-  background: var(--simpsons-yellow);
+  border: none;
+  background: var(--color-background);
 }
 
 /* FORMS */
 input, select, textarea {
-  border: 2px solid var(--simpsons-blue);
-  border-radius: 9px;
-  padding: 7px 12px;
-  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  background: #fffce4;
+  background: var(--color-primary);
   margin-bottom: 8px;
 }
 
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: var(--simpsons-red);
-  background: #fffbe6;
-}
-
-/* SPECIAL BADGES (for Simpsons fun) */
-.simpsons-badge {
-  display: inline-block;
-  background: var(--simpsons-green);
-  color: var(--simpsons-black);
-  border: 2px solid var(--simpsons-black);
-  border-radius: 12px;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  padding: 4px 12px;
-  font-size: 0.95rem;
-  margin-left: 6px;
-  box-shadow: var(--simpsons-shadow);
+  border-color: var(--color-accent);
+  background: var(--color-primary);
 }
 
 /* FOOTER */
 .footer {
-  background: var(--simpsons-blue);
-  color: var(--simpsons-yellow);
-  border-top: 6px solid var(--simpsons-red);
+  background: var(--color-primary);
+  color: var(--color-text-dark);
+  border-top: 1px solid var(--color-border);
   text-align: center;
-  font-size: 1.2rem;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  padding: 1.2rem 0;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  padding: 1rem 0;
   margin-top: 40px;
-  text-shadow: 1px 2px 0 var(--simpsons-black);
+  text-shadow: none;
 }
 
 /* LINKS */
 a {
-  color: var(--simpsons-red);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 a:hover {
-  color: var(--simpsons-blue);
-  text-decoration: underline wavy var(--simpsons-yellow);
+  color: var(--color-hover-dark);
+  text-decoration: underline;
 }
 
-/* ALERTS, MESSAGES */
-.alert, .simpsons-alert {
-  background: var(--simpsons-yellow);
-  color: var(--simpsons-red);
-  border: 2px solid var(--simpsons-red);
-  border-radius: 10px;
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  padding: 8px 20px;
-  box-shadow: var(--simpsons-shadow);
+/* ALERTS */
+.alert {
+  background: var(--color-secondary);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  padding: 12px 16px;
+  box-shadow: none;
 }
 
 /* ADMIN PANEL */
 .admin-panel {
-  background: var(--simpsons-white);
-  border: 3px dashed var(--simpsons-blue);
-  border-radius: 24px;
-  padding: 18px;
+  background: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 24px;
   margin-bottom: 24px;
 }
 
 .admin-panel h2 {
-  color: var(--simpsons-blue);
+  color: var(--color-text-dark);
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: var(--simpsons-yellow);
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--simpsons-blue);
+  background: var(--color-border);
   border-radius: 4px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
   header h1, .navbar-brand, .simpsons-title {
-    font-size: 1.3rem;
-    letter-spacing: 1px;
+    font-size: 1.25rem;
   }
   .footer {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
-}
-
-/* Fun Simpsons details! */
-.simpsons-quote {
-  font-family: 'Luckiest Guy', 'Comic Sans MS', cursive, sans-serif;
-  color: var(--simpsons-red);
-  background: var(--simpsons-yellow);
-  border: 2px solid var(--simpsons-blue);
-  border-radius: 10px;
-  padding: 6px 15px;
-  margin: 12px 0;
-  display: inline-block;
-  font-size: 1.1rem;
-  text-shadow: 1px 1px 0 var(--simpsons-blue);
 }

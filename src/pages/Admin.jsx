@@ -1,17 +1,18 @@
 import { useEffect, useState, useRef } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { StyledTitle } from "../components/StyledTitle";
-import { SimpsonsButton } from "../components/SimpsonsButton";
-import { SimpsonsActionButton } from "../components/SimpsonsActionButton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 function Admin() {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({ title: "", price: "", image: "", description: "" });
   const [editingId, setEditingId] = useState(null);
-  const [errores, setErrores] = useState({});
+  const [formError, setFormError] = useState(""); // Nuevo estado para errores del formulario
+  const [loadingProducts, setLoadingProducts] = useState(true); // Nuevo estado para carga de productos
+  const [errorProducts, setErrorProducts] = useState(null); // Nuevo estado para errores de productos
+  
   const [showModal, setShowModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const cancelBtnRef = useRef(null);
@@ -20,9 +21,24 @@ function Admin() {
 
   // Cargar productos desde la API
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    const fetchProducts = async () => {
+      setLoadingProducts(true);
+      setErrorProducts(null);
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) {
+          throw new Error("Error al cargar los productos.");
+        }
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        setErrorProducts(error.message);
+        toast.error("Error al cargar los productos.");
+      } finally {
+        setLoadingProducts(false);
+      }
+    };
+    fetchProducts();
   }, []);
 
   // Maneja cambios en el formulario
@@ -30,10 +46,30 @@ function Admin() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Validar formulario
+  const validateForm = () => {
+    if (!form.title.trim()) {
+      setFormError("El nombre del producto es obligatorio.");
+      return false;
+    }
+    if (parseFloat(form.price) <= 0) {
+      setFormError("El precio debe ser mayor a 0.");
+      return false;
+    }
+    if (form.description.trim().length < 10) {
+      setFormError("La descripción debe tener al menos 10 caracteres.");
+      return false;
+    }
+    setFormError(""); // Limpiar errores si la validación es exitosa
+    return true;
+  };
+
   // Agregar o editar producto
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // ...validaciones y manejo de errores...
+    if (!validateForm()) {
+      return;
+    }
     try {
       if (editingId) {
         // Editar producto
@@ -56,17 +92,24 @@ function Admin() {
       setProducts(data);
       setForm({ title: "", price: "", image: "", description: "" });
       setEditingId(null);
-      setErrores({});
+      
       toast.success("Producto guardado correctamente");
     } catch (error) {
+      console.error("Error al guardar el producto:", error);
       toast.error("Error al guardar el producto");
     }
   };
 
   // Eliminar producto
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    setProducts(products.filter((p) => p.id !== id));
+    try {
+      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+      setProducts(products.filter((p) => p.id !== id));
+      toast.success("Producto eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar el producto:", error);
+      toast.error("Error al eliminar el producto");
+    }
   };
 
   // Cargar producto al formulario para editar
@@ -78,7 +121,7 @@ function Admin() {
       image: product.image,
       description: product.description || "",
     });
-    setErrores({});
+    
   };
 
   useEffect(() => {
@@ -90,12 +133,13 @@ function Admin() {
   return (
     <div className="container py-4 bg-light rounded">
       <Helmet>
-        <title>Panel de administración | El Hoyito del Diablo</title>
-        <meta name="description" content="Administra los productos de El Hoyito del Diablo con estilo Simpsons." />
+        <title>Tienda Online - Administración</title>
+        <meta name="description" content="Panel de administración para gestionar productos de la tienda online." />
       </Helmet>
       <StyledTitle>Panel de administración</StyledTitle>
       {/* Formulario */}
       <form className="mb-4" onSubmit={handleSubmit}>
+        {formError && <div className="alert alert-danger mb-3">{formError}</div>} {/* Mostrar errores del formulario */}
         <div className="row g-2">
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="title">Nombre del producto</label>
@@ -107,7 +151,7 @@ function Admin() {
               value={form.title}
               onChange={handleChange}
             />
-            {errores.title && <span role="alert" aria-live="assertive" style={{ color: 'red' }}>{errores.title}</span>}
+            
           </div>
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="price">Precio</label>
@@ -120,7 +164,7 @@ function Admin() {
               value={form.price}
               onChange={handleChange}
             />
-            {errores.price && <span role="alert" style={{ color: 'red' }}>{errores.price}</span>}
+            
           </div>
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="image">URL de la imagen</label>
@@ -143,64 +187,67 @@ function Admin() {
               value={form.description}
               onChange={handleChange}
             />
-            {errores.description && <span role="alert" style={{ color: 'red' }}>{errores.description}</span>}
+            
           </div>
         </div>
-        {errores.general && (
-          <div role="alert" style={{ color: 'red', marginBottom: 10 }}>
-            {errores.general}
-          </div>
-        )}
+        
         <div className="mt-3 d-flex flex-wrap gap-2">
-          <SimpsonsButton type="submit" style={{ width: "100%" }}>
+          <button type="submit" className="btn btn-primary w-100">
             {editingId ? <><FaEdit /> Editar producto</> : <>Agregar producto</>}
-          </SimpsonsButton>
+          </button>
           {editingId && (
-            <SimpsonsButton
+            <button
               type="button"
-              style={{ background: "#7ac142", color: "#fff", width: "100%" }}
+              className="btn btn-secondary w-100"
               onClick={() => {
                 setEditingId(null);
                 setForm({ title: "", price: "", image: "", description: "" });
-                setErrores({});
+                
               }}
             >
               Cancelar
-            </SimpsonsButton>
+            </button>
           )}
         </div>
       </form>
       {/* Lista de productos */}
       <h4 className="mt-4 mb-3 text-center">Productos actuales</h4>
-      <div className="row">
-        {products.map((product) => (
-          <div key={product.id} className="col-12 col-md-6 col-lg-4 mb-3">
-            <div className="card h-100 shadow-sm rounded">
-              <img
-                src={product.image || "https://via.placeholder.com/150"}
-                alt={product.title}
-                className="card-img-top img-fluid"
-                style={{ objectFit: "cover", height: 180 }}
-              />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{product.title}</h5>
-                <p className="card-text mb-2">${product.price}</p>
-                <div className="mt-auto d-flex gap-2">
-                  <SimpsonsActionButton variant="edit" onClick={() => handleEdit(product)}>
-                    <FaEdit /> Editar
-                  </SimpsonsActionButton>
-                  <SimpsonsActionButton variant="delete" onClick={() => {
-                    setShowModal(true);
-                    setDeleteId(product.id);
-                  }}>
-                    <FaTrash /> Eliminar
-                  </SimpsonsActionButton>
+      {loadingProducts && <div className="alert alert-info">Cargando productos...</div>} {/* Mostrar estado de carga */}
+      {errorProducts && <div className="alert alert-danger">Error: {errorProducts}</div>} {/* Mostrar error al cargar productos */}
+      {!loadingProducts && !errorProducts && products.length === 0 && (
+        <div className="alert alert-warning">No hay productos para mostrar.</div>
+      )} {/* Mensaje si no hay productos */}
+      {!loadingProducts && !errorProducts && products.length > 0 && (
+        <div className="row">
+          {products.map((product) => (
+            <div key={product.id} className="col-12 col-md-6 col-lg-4 mb-3">
+              <div className="card h-100 shadow-sm rounded">
+                <img
+                  src={product.image || "https://via.placeholder.com/150"}
+                  alt={product.title}
+                  className="card-img-top img-fluid"
+                  style={{ objectFit: "cover", height: 180 }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{product.title}</h5>
+                  <p className="card-text mb-2">${product.price}</p>
+                  <div className="mt-auto d-flex gap-2">
+                    <button className="btn btn-primary" onClick={() => handleEdit(product)}>
+                      <FaEdit /> Editar
+                    </button>
+                    <button className="btn btn-danger" onClick={() => {
+                      setShowModal(true);
+                      setDeleteId(product.id);
+                    }}>
+                      <FaTrash /> Eliminar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       {/* Modal de confirmación accesible y responsivo */}
       {showModal && (
         <div

@@ -11,15 +11,15 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Cart from "./components/Cart";
-import { CartProvider } from "./context/CartContext";
-import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartProvider";
+import { AuthProvider } from "./context/AuthProvider";
 import { BrowserRouter,  Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/elhoyitodeldiablo/">
 <AuthProvider>
   <CartProvider>
             <Header /> 

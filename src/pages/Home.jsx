@@ -1,13 +1,32 @@
-import { Helmet } from "react-helmet";
+import { useState } from "react";
+import productos from "../data/productos";
+import ProductList from "../components/ProductList";
+import { Helmet } from "react-helmet-async";
 
 function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProducts = productos.filter((product) =>
+    product && product.title && product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div>
+    <div className="container py-4">
       <Helmet>
-        <title>Inicio | El Hoyito del Diablo</title>
-        <meta name="description" content="Bienvenido a El Hoyito del Diablo, la mejor tienda temática de Los Simpsons." />
+        <title>Tienda Online - Inicio</title>
+        <meta name="description" content="Explora nuestra amplia selección de productos de alta calidad." />
       </Helmet>
-      {/* ...contenido de la página... */}
+      <h2 className="text-center mb-4">Nuestros Productos</h2>
+      <div className="mb-4">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Buscar productos..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <ProductList products={filteredProducts} />
     </div>
   );
 }

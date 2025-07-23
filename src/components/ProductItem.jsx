@@ -1,4 +1,4 @@
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useCart";
 import { Link } from "react-router-dom";
 
 function ProductItem({ product }) {
@@ -7,7 +7,7 @@ function ProductItem({ product }) {
   return (
     <div className="card h-100">
       <Link to={`/productos/${product.id}`}>
-        <img src={product.image} className="card-img-top p-3" style={{ height: "200px", objectFit: "contain" }} alt={product.title} />
+        <img src={product.image} className="card-img-top p-2" style={{ height: "150px", objectFit: "contain" }} alt={product.title} />
       </Link>
       <div className="card-body d-flex flex-column">
         <h5 className="card-title">{product.title}</h5>

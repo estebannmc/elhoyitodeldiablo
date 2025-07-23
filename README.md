@@ -9,114 +9,74 @@ Este proyecto lo armé como práctica para seguir aprendiendo React. Es una tien
 - **React** – Para construir toda la interfaz
 - **Vite** – Para un entorno de desarrollo más rápido
 - **React Router DOM** – Para manejar las rutas de la app
+- **Bootstrap** – Para estilos responsivos y componentes UI
+- **Styled-components** – Para personalizar los estilos y hacer el código más modular
+- **React Icons** – Para agregar iconos en botones y elementos interactivos
+- **React Toastify** – Para mostrar notificaciones de éxito y error
+- **React Helmet Async** – Para mejorar el SEO y la accesibilidad (títulos y metaetiquetas)
 - **MockAPI** – Para simular una API REST
 - **ESLint** – Para mantener el código ordenado
-- CSS puro (aunque más adelante puedo sumar Tailwind o Bootstrap)
 
 ---
 
 ## 🛒 ¿Qué se puede hacer?
 
 - Ver un listado de productos
+- Buscar productos por nombre
 - Entrar a ver el detalle de cada producto por nombre
-- Crear, editar y eliminar productos desde el admin
+- Crear, editar y eliminar productos desde el panel de administración
+  - **Validación de formulario:** Los campos de producto ahora tienen validaciones (nombre obligatorio, precio > 0, descripción mínima de 10 caracteres).
+  - **Manejo de estados de carga:** Se muestran mensajes de carga al obtener los productos.
 - Consumir datos desde una API externa (MockAPI)
 - Manejar errores y estados de carga (como cuando un producto no existe)
+- **SEO y Accesibilidad:** Las páginas principales ahora tienen títulos y metaetiquetas dinámicas para mejorar el SEO y la accesibilidad.
 
 ---
 
 ## 🚀 Cómo correr el proyecto
 
-```bash
-# Cloná el repo
-git clone https://github.com/estebannmc/elhoyitodeldiablo.git
+1.  **Clona el repositorio:**
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    cd el-hoyito-del-diablo
+    ```
 
-# Entrá a la carpeta del proyecto
-cd elhoyitodeldiablo
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    ```
 
-# Instalá las dependencias
-npm install
+3.  **Inicia el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
 
-# Levantá el servidor de desarrollo
-npm run dev
+Luego, abre [http://localhost:5173](http://localhost:5173) en tu navegador y ¡listo!
 
-🔗 API utilizada
-https://6878456731d28a460e1dbc55.mockapi.io/api/elhoyito/articulos
+---
 
-🧱 Estructura del proyecto
+🔗 **API Pública**
+La aplicación se conecta a esta API pública que creé usando MockAPI:
+`https://6878456731d28a460e1dbc55.mockapi.io/api/elhoyito/articulos`
+
+---
+
+🧱 **Estructura del proyecto**
+
+```
 src/
-├── components/
-│   ├── NavBar.jsx
-│   ├── ItemListContainer.jsx
-│   ├── ItemDetailContainer.jsx
-│   └── ...
-├── App.jsx
-├── main.jsx
-└── ...
+├── assets/             # Archivos estáticos como imágenes
+├── components/         # Componentes reutilizables de UI (NavBar, ProductList, etc.)
+├── context/            # Contextos de React (AuthContext, CartContext)
+├── data/               # Datos locales (ej. productos iniciales)
+├── hooks/              # Custom Hooks (useAuth, useCart)
+├── pages/              # Componentes de página (Home, Login, Admin, etc.)
+├── routes/             # Definición de rutas y rutas protegidas
+├── App.jsx             # Componente principal de la aplicación
+├── index.css           # Estilos globales de la aplicación
+└── main.jsx            # Punto de entrada de la aplicación
+```
 
---------------
+---
 
-Thanks for reading!
-
-🧸 El Hoyito del Diablo – Online Store
-This is a small project I built to keep practicing React. It's a fictional online store with a mystical vibe, where users can browse products, see their details, and manage a basic inventory. It connects to MockAPI, which is great for quickly mocking and testing endpoints.
-
-⚙️ Tech Stack
-React – For the entire UI
-
-Vite – For a faster development experience
-
-React Router DOM – To manage routes
-
-MockAPI – To simulate a REST API
-
-ESLint – For cleaner code
-
-Plain CSS (though I might add Tailwind or Bootstrap soon)
-
-🛒 Features
-View a list of products
-
-See detailed view by product name
-
-Create, edit, and delete products from the admin
-
-Fetch data from an external API (MockAPI)
-
-Handle errors and loading states (like when a product doesn't exist)
-
-🚀 How to run it
-bash
-Copiar
-Editar
-# Clone the repo
-git clone https://github.com/estebannmc/elhoyitodeldiablo.git
-
-# Enter the project folder
-cd elhoyitodeldiablo
-
-# Install dependencies
-npm install
-
-# Start the dev server
-npm run dev
-Then open http://localhost:5173 in your browser and you're good to go.
-
-🔗 Public API
-The app connects to this public API I created using MockAPI:
-https://6878456731d28a460e1dbc55.mockapi.io/api/elhoyito/articulos
-
-🧱 Project structure
-
-src/
-├── components/
-│   ├── NavBar.jsx
-│   ├── ItemListContainer.jsx
-│   ├── ItemDetailContainer.jsx
-│   └── ...
-├── App.jsx
-├── main.jsx
-└── ...
-
-✍️ About me
-I'm Esteban, a web developer from Argentina. This is one of the projects I created as part of my React learning process. If you're curious about other things I'm working on, feel free to get in touch or check out my profile.
+¡Gracias por leer!

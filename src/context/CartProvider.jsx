@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
-
-const CartContext = createContext();
+import { useState, useEffect } from "react";
+import { CartContext } from "./CartContext";
 
 export function CartProvider({ children }) {
   // Lee carrito de localStorage, o arranca vacío
@@ -41,8 +40,4 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
-
-export function useCart() {
-  return useContext(CartContext);
 }

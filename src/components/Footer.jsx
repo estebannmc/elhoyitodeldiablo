@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <p>&copy; {new Date().getFullYear()} - El hoyito del diablo</p>
     </footer>
   );
